@@ -96,16 +96,25 @@ the second condition is for checking if the property saveEnabled is not set to f
  then we get the state to be saved from the view's onSaveInstanceState to get the view and its children state which can be overriden by implementers and
  put the state with the id as its key.
  
- 
+#### BaseSavedState
+
 
 ## Bundle 
 Represents the mapping from Keys to Parcelable values where each key is part of the state that we want to save and restore.
 
-### Examples in the framework of saving the state
-
 ### Saving and restoring state for custom views
 
 #### Saving and restoring state for compound views 
+
+### Examples in the framework of saving the state
+
+#### CompoundButton
+A button with two states, checked and unchecked
+
+#### TextView
+- setFreezesText 
+
+#### EditText
 
 ## Window 
 Provides standard UI policies like background, title area, default key processing, etc.
