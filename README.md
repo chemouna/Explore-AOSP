@@ -115,7 +115,16 @@ let's jump back to the rest of saveHierarchyState the currently focused view id 
  then Application object is notified that activity saveInstanceState has been called so that lifecycle callback for onActivitySaveInstanceState is triggered.
  
  Where is onSaveInstanceState called ?
- performSaveInstanceState 
+ performSaveInstanceState called by callCallActivityOnSaveInstanceState of ActivityThread (main entry point of an android application : it has the static main 
+ java method that starts any  android app) which <b>may be called</b> on 4 cases: 
+    - handleRelaunchActivity 
+    - handleSleeping 
+    - performPauseActivity
+    - performStopActivityInner 
+    
+  which are all cases in handleMessage of ActivityThread handler, most calls sending messages (for PAUSE, STOP, LAUNCH, CONGIGURATION CHANGES, ...) are scheduleXXXActivity 
+  (ex: schedulePauseActivity, scheduleStopActivity, ...) or the ApplicationThread class from there it gets to Binder territory that i dont understand yet (TODO).
+    
  
 ## Bundle 
 Represents the mapping from Keys to Parcelable values where each key is part of the state that we want to save and restore.
