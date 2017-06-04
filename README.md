@@ -95,10 +95,28 @@ the second condition is for checking if the property saveEnabled is not set to f
  android:saveEnable="false") 
  then we get the state to be saved from the view's onSaveInstanceState to get the view and its children state which can be overriden by implementers and
  put the state with the id as its key.
+dispatchSaveInstanceState can be overriden to change how freezing happens to a view's children.
+
+let's jump back to the rest of saveHierarchyState the currently focused view id is saved in the state to be restored and the view is focused on restoration 
+ as in restoreHierarchyState :
+ ```java 
+  int focusedViewId = savedInstanceState.getInt(FOCUSED_ID_TAG, View.NO_ID);
+  if (focusedViewId != View.NO_ID) {
+     View needsFocus = mContentParent.findViewById(focusedViewId);
+     if (needsFocus != null) {
+        needsFocus.requestFocus();
+     } 
+     //.... 
+ ```
+ then panels and toolbar state are saved.
  
-#### BaseSavedState
-
-
+ and lets jump back up again to the caller onSaveInstanceState in Activity where after saving hierarchy state the fragments states are saved
+ //TODO: explore fragments state save 
+ then Application object is notified that activity saveInstanceState has been called so that lifecycle callback for onActivitySaveInstanceState is triggered.
+ 
+ Where is onSaveInstanceState called ?
+ performSaveInstanceState 
+ 
 ## Bundle 
 Represents the mapping from Keys to Parcelable values where each key is part of the state that we want to save and restore.
 
@@ -118,10 +136,17 @@ A button with two states, checked and unchecked
 
 #### ScrollView 
 
+## ActivityThread 
+
+
 ## Window 
 Provides standard UI policies like background, title area, default key processing, etc.
 
 ### DecorView
+
+## View 
+
+## ViewGroup
 
 
 ## Text
@@ -140,4 +165,6 @@ Related:
 ## Contextual Menus
 
 ## Animation
+
+### Transitions 
 
