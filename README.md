@@ -116,7 +116,28 @@ A button with two states, checked and unchecked
 
 #### EditText
 
+#### ScrollView 
+
 ## Window 
 Provides standard UI policies like background, title area, default key processing, etc.
 
 ### DecorView
+
+
+## Text
+
+### [Draft] TextSelection
+
+#### TextSelection Actions 
+- ACTION_PROCESS_TEXT 
+- change I62ec618010edf01da41338c8c1a7dd4292a15227 adding dispatchActivityResult to dispatch results to views for intents
+  that are selected for selection 
+
+
+Related:
+[In-app translations in Android Marshmallow](https://android-developers.googleblog.com/2015/10/in-app-translations-in-android.html)
+
+## Contextual Menus
+
+## Animation
+
